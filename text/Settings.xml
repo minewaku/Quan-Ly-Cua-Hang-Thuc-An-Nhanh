@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<settings>
+  <database>
+    <!--Data Source=MSI\MINEWAKU;Initial Catalog=Data;User ID=sa;Password=sqlmnwk11112003 -->
+    <serverName>localhost</serverName>
+    <databaseName>Data</databaseName>
+    <!--Data Source=localhost\sqlexpress;Initial Catalog=Data;Integrated Security=True-->
+    <!--<serverName>localhost\sqlexpress</serverName>
+		<databaseName>Data</databaseName>-->
+  </database>
+  <behavior>
+    <skipLogin>false</skipLogin>
+  </behavior>
+  <data>
+    <username>admin</username>
+    <password>admin</password>
+  </data>
+</settings>
