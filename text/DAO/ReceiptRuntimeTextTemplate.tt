@@ -1,0 +1,78 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter name="Model" type="text.DAO.ReceiptModel" #>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+    <style type="text/css">
+        body { font-family: Calibri; font-size: 16px;}
+        h1 {text-align: center; margin: 10px; text-transform: uppercase;}
+        h6 {margin: 5px;}
+        p {margin: 3px;}
+        table { text-align: center; display:inline-block; margin: auto;}
+        thead { text-transform: uppercase;}
+        tbody {font-size: 12px;}
+        .container {height:100%;}
+        .foot {text-align:right;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="<#= System.Windows.Forms.Application.StartupPath #>\..\..\..\img\cropped-SGU-LOGO.jpg" alt="logo" width="200" height="50"/>
+        <h6><#= System.Windows.Forms.Application.StartupPath #></h6>
+        <h1>Order Demo</h1>
+        <p><strong>Receipt ID:</strong> <#= Model.id #></p>
+        <p><strong>Creation date:</strong> <#= Model.date #></p>
+        <p><strong>Cashier:</strong> <#= Model.cashier #></p>
+        <p><strong>At table:</strong> <#= Model.table #></p>
+        <hr>
+        <table>
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>unit</th>
+                <th>quantity</th>
+                <th>subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <# foreach(var row in Model.items) { #>
+                <tr>
+                    <td><#= row.id #></td>
+                    <td><#= row.name #></td>
+                    <td style="text-align: right;"><#= row.unit #></td>
+                    <td style="text-align: right;"><#= row.quantity #></td>
+                    <td style="text-align: right;"><#= row.subtotal #></td>
+                </tr>
+              <# } #>
+            </tbody>
+        </table>
+        <hr>
+        <table style="margin-left: auto;">
+            <tr>
+                <th style="text-align:left;">Total:</th>
+                <td style="text-align:right;"><#= Model.total #></td>
+                <td style="text-align:left;"><strong>VND</strong></td>
+            </tr>
+            <tr>
+                <th style="text-align:left;">Discount %:</th>
+                <td style="text-align:right;"><#= Model.discount #></td>
+                <td style="text-align:left;"><strong>%</strong></td>
+            </tr>
+            <tr>
+                <th style="text-align:left;">Pay amount:</th>
+                <td style="text-align:right;"><#= Model.totalAfterDiscount #></td>
+                <td style="text-align:left;"><strong>VND</strong></td>
+            </tr>
+        </table>
+        <h6 style="text-align:center;">This report is a Receipt print demo for DOANc#, SGU</h6>
+        <h6>The report is Company Confidential.</h6>
+    </div>
+</body>
+</html>
