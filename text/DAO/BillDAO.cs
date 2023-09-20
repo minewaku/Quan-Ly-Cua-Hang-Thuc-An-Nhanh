@@ -45,10 +45,10 @@ namespace text.DAO
             try
             {
                 int newBillId = (int)DataProvider.Instance.ExecuteQuery(bill.Creation != null ? String.Format(
-                    "INSERT INTO Bill(idNhanVien, status, discount, total, creation, idTable) OUTPUT Inserted.id VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
+                    "INSERT INTO Bill(idNhanVien, status, discount, total, creation) OUTPUT Inserted.id VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')",
                         bill.IDNhanvien, bill.Status, bill.Discount, bill.Total, bill.Creation)
                     : String.Format(
-                        "INSERT INTO Bill(idNhanVien, status, discount, total, idTable) OUTPUT Inserted.id VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')",
+                        "INSERT INTO Bill(idNhanVien, status, discount, total) OUTPUT Inserted.id VALUES ('{0}', '{1}', '{2}', '{3}')",
                             bill.IDNhanvien, bill.Status, bill.Discount, bill.Total))
                     .Rows[0]["id"];
                 details.ForEach(detail => DataProvider.Instance.ExecuteNonQuery(String.Format("INSERT INTO BillDetail(billId, foodId, Quantity) VALUES ('{0}', '{1}', '{2}')",
